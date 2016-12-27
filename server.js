@@ -14,13 +14,14 @@ app.engine('html', require('ejs').renderFile);
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
+var test = process.env.project_id;
 
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
-  res.render('index.html', { pageCountMessage : null});
+  var test = process.env.project_id;
+  res.render('index.html', { test : test});
 });
-
 
 // error handling
 app.use(function(err, req, res, next){
@@ -94,6 +95,5 @@ getForecastFromNet();
 setInterval(function() {
   getForecastFromNet();
 }, (config.requestTimeForecast * 60 * 1000));
-//}, 10000);
 
 module.exports = app ;

@@ -1,0 +1,1 @@
+Tue Dec 27 2016 15:17:12 GMT+0100 (CET) getForecast:  getting forecast
