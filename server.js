@@ -17,7 +17,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
-  res.render('index.html', { test : process.env.private_key.replace(/\n/,"\n")});
+  res.render('index.html', { test : process.env.private_key.replace(/\\n/,"\n")});
 });
 
 // error handling
@@ -34,7 +34,7 @@ var defaultApp = admin.initializeApp({
       "type": "service_account",
       "project_id": process.env.project_id,
       "private_key_id": process.env.private_key_id,
-      "private_key": process.env.private_key.replace(/\n/,"\n"),
+      "private_key": process.env.private_key.replace(/\\n/,"\n"),
       "client_email": process.env.client_email,
       "client_id": process.env.client_id,
       "auth_uri": "https://accounts.google.com/o/oauth2/auth",
