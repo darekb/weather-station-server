@@ -1,0 +1,33 @@
+{
+  "name": "nodejs-ex",
+  "version": "0.0.1",
+  "description": "Node.js sample app for OpenShift 3",
+  "main": "server.js",
+  "dependencies": {
+    "Q": "^0.0.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "firebase": "^3.6.2",
+    "firebase-admin": "^4.0.3",
+    "q": "^1.4.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  },
+  "engine": {
+    "node": "*",
+    "npm": "*"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/darekb/nodejs-ex.git"
+  },
+  "author": "Steve Speicher <sspeiche@gmail.com>",
+  "license": "CC-BY-1.0",
+  "bugs": {
+    "url": "http://github.com/darekb/nodejs-ex/issues"
+  },
+  "homepage": "http://github.com/darekb/nodejs-ex"
+}
