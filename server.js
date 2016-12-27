@@ -62,7 +62,9 @@ var addToFirebase = function(dataRef, data) {
 
 if(defaultApp){
     if(defaultApp.database()){
-        console.log('ALL OK'); 
+        console.log(defaultApp.name + 'ALL OK'); 
+        console.log('defaultApp.options.credential', defaultApp.options.credential);
+        console.log('defaultApp.options.databaseURL', defaultApp.options.databaseURL); 
         addToFirebase(defaultApp.database().ref('test/'), new Date().toString());
     } else {
        console.log('Error create defaultApp.database()'); 
