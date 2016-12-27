@@ -14,12 +14,10 @@ app.engine('html', require('ejs').renderFile);
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-var test = process.env.project_id;
-
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
-  res.render('index.html', { test : process.env.private_key});
+  res.render('index.html', { test : process.env.private_key.replace(/\n/,"\n")});
 });
 
 // error handling

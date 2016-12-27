@@ -38,3 +38,6 @@ jspm_packages
 
 #firebase-config
 
+
+#idea
+/.idea
