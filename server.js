@@ -46,15 +46,7 @@ var defaultApp = admin.initializeApp({
     }),
     databaseURL: config.firebaseUrl
 });
-if(defaultApp){
-    if(defaultApp.database()){
-        addToFirebase(defaultApp.database().ref('test/'), new Date().toString());
-    } else {
-       console.log('Error create defaultApp.database()'); 
-    }
-} else {
-    console.log('Error create defaultApp');
-}
+
 
 var addToFirebase = function(dataRef, data) {
     var d = Q.defer();
@@ -65,6 +57,17 @@ var addToFirebase = function(dataRef, data) {
         d.reject("The write operation failed");
     }
     return d.promise;
+}
+
+
+if(defaultApp){
+    if(defaultApp.database()){
+        addToFirebase(defaultApp.database().ref('test/'), new Date().toString());
+    } else {
+       console.log('Error create defaultApp.database()'); 
+    }
+} else {
+    console.log('Error create defaultApp');
 }
 
 var updateForecast = function(dataRef, data) {
