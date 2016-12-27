@@ -19,8 +19,7 @@ var test = process.env.project_id;
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
-  var test = process.env.project_id;
-  res.render('index.html', { test : test});
+  res.render('index.html', { test : process.env.project_id});
 });
 
 // error handling
@@ -47,6 +46,15 @@ var defaultApp = admin.initializeApp({
     }),
     databaseURL: config.firebaseUrl
 });
+if(defaultApp){
+    if(defaultApp.database()){
+        addToFirebase(defaultApp.database().ref('test/'), new Date().toString());
+    } else {
+       console.log('Error create defaultApp.database()'); 
+    }
+} else {
+    console.log('Error create defaultApp');
+}
 
 var addToFirebase = function(dataRef, data) {
     var d = Q.defer();
