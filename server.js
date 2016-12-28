@@ -29,21 +29,19 @@ app.use(function(err, req, res, next){
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
-var cred  = {
-  "type": "service_account",
-  "project_id": process.env.project_id,
-  "private_key_id": process.env.private_key_id,
-  "private_key": process.env.private_key.replace(/\\n/g,'\n'),
-  "client_email": process.env.client_email,
-  "client_id": process.env.client_id,
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://accounts.google.com/o/oauth2/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": process.env.client_x509_cert_url
-};
-
 var defaultApp = admin.initializeApp({
-    credential: admin.credential.cert(cred),
+    credential: admin.credential.cert({
+	    "type": "service_account",
+	    "project_id": process.env.project_id,
+	    "private_key_id": process.env.private_key_id,
+	    "private_key": process.env.private_key.replace(/\\n/g,'\n'),
+	    "client_email": process.env.client_email,
+	    "client_id": process.env.client_id,
+	    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+	    "token_uri": "https://accounts.google.com/o/oauth2/token",
+	    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+	    "client_x509_cert_url": process.env.client_x509_cert_url
+    }),
     databaseURL: config.firebaseUrl
 });
 
@@ -62,11 +60,7 @@ var addToFirebase = function(dataRef, data) {
 
 if(defaultApp){
     if(defaultApp.database()){
-        console.log(cred);
         console.log(defaultApp.name + ' ALL OK');
-        console.log('defaultApp.options.credential', defaultApp.options.credential);
-        console.log('defaultApp.options.databaseURL', defaultApp.options.databaseURL); 
-        addToFirebase(defaultApp.database().ref('test/'), new Date().toString());
     } else {
        console.log('Error create defaultApp.database()'); 
     }
